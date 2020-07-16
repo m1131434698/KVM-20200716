@@ -6,4 +6,6 @@
 在私有云领域，目前VMware ESXi是领导者，微软Hyper-V不少应用，随着公有云厂商不断推进专有云/私有云方案，未来KVM应用也会逐渐增加。
 KVM目前已支持x86、PowerPC、S/390、ARM等平台。
 
+
+详情查看知乎：
 https://zhuanlan.zhihu.com/p/105499858
