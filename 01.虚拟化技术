@@ -1,0 +1,33 @@
+目前常用的虚拟机技术主要有KVM、xen、vmware。
+KVM是指基于Linux内核（Kernel-based）的虚拟机（Virtual Machine）。
+
+            是否开源 是否免费 性能    优点缺点
+
+KVM         是       是       高     1.KVM是内核本身的一部分，因此可以利用内核的优化和改进。2.高性能, 稳定, 无需修改客户机系统。3.开源、免费
+
+XEN         是       是       高     1.性能较好。2.开源、免费 操作复杂，维护成本较高，目前已被RedHat抛弃
+
+VMWare      否       否       一般    相对比较成熟的商业软件，市场占有率较大 不开源，需要付费
+
+作者：SkTj
+链接：https://www.jianshu.com/p/586035c8a34b
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+1、虚拟化技术主要分类
+·平台虚拟化(Platform Virtualization)
+对计算机和操作系统的虚拟化
+·资源虚拟化(Resource Virtualization)
+对内存、存储、网络资源等的虚拟化
+·应用程序虚拟化(Application Virtualization)
+包括仿真、模拟、解释技术等
+
+
+
+2、平台虚拟化技术分配
+
+操作系统级虚拟化：Solaris Container, FreeBSD jail, OpenVZ等
+部分虚拟化
+全虚拟化
+超虚拟化
+硬件辅助虚拟化
