@@ -1,4 +1,4 @@
 # Virtualization-20200716
 
 
-This is taking notes about Virtualization
+This is used for taking notes about Virtualization
