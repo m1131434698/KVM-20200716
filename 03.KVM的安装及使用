@@ -8,7 +8,7 @@ systemctl start libvirtd.service                   ##启动服务
 systemctl enable libvirtd.service
 
 
-CuestOS安装
+GuestOS安装
 方案一：cockpit安装
 yum -y install cockpit                             
 systemctl start cockpit
@@ -60,8 +60,9 @@ net.ipv4.ip_forward = 1
 
 
 KVM虚拟机的日常管理
-virsh list                      # 查看虚拟机列表
-virsh list --all
+vim vim /etc/libvirt/qemu/vm1.xml     #通过修改配置文件可以对硬盘等配置进行修改
+
+virsh list    -a                # 查看虚拟机列表
 virsh start centos7             # 开启虚拟机，最后跟的是KVM虚拟机的名称
 virsh shutdown centos7          # 正常关闭
 virsh destroy centos7           # 拔电源
