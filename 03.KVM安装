@@ -1,0 +1,63 @@
+
+
+在处理器中勾选虚拟化引擎
+
+
+yum install -y libvirt virt-install qemu-kvm      ##安装软件
+                                                    libvirt        # 虚拟机管理软件
+                                                    virt-install   # 虚拟机的安装工具和克隆工具
+                                                    qemu-kvm       # 管理虚拟机的虚拟磁盘
+                                                    virt-manager   # 图形管理程序
+systemctl start libvirtd.service                   ##启动服务
+systemctl enable libvirtd.service
+
+
+GuestOS安装
+方案一：cockpit安装
+yum -y install cockpit                             
+systemctl start cockpit
+浏览器访问：IP:端口   192.192.168.128:9090          
+
+方案二：图形化安装
+yum -y install virt-manager
+virt-manager                                      ##需要操作系统镜像文件
+
+方案三：完全文本安装
+
+
+virt-install --connect qemu:///system --virt-type kvm --os-type=linux --os-variant rhel7 
+             --name centos7 --memory 1024 --vcpus 1 
+             --disk /opt/centos7.raw,format=raw,size=10 
+             --cdrom /opt/CentOS-7-x86_64-DVD-1708.iso 
+             --network network=default 
+             --graphics vnc,listen=0.0.0.0 --noautoconsole
+
+man virt-install          # 查看安装帮助
+--virt-type               # 指定虚拟化类型
+--os-type                 # 指定系统类型
+--os-variant              # 指定系统版本
+--name                    # 指定虚拟机的名称
+--memory                  # 指定虚拟机内存
+--vcpus                   # 指定虚拟机CPU
+--disk                    # 指定虚拟机磁盘文件路径及名称、磁盘文件类型、磁盘空间
+--cdrom                   # 指定虚拟机安装的镜像
+--network                 # 指定网络
+--graphics                # 图形界面
+--noautocondole           # 不加改参数创建虚拟机的时候会夯住
+raw和qcow2的区别
+raw:裸格式，占用空间比较大，不支持快照功能，性能较好，不方便传输
+qcow2:cow(copy on write)占用空间小，支持快照，性能比raw差一点，方便传输
+
+方案四：命令行方式
+虚拟机配置文件：/etc/libvirt/qemu
+储存虚拟机的介质： /var/lib/libvirt/images/
+根据配置文件创建虚拟机
+cp vm1.img vm2.img                      # 需要有磁盘镜像文件
+cp vm1.xml vm2.xml                      # 需要有配置文件
+vim /etc/libvirt/qemu/vm2.xml           # 配置文件需要修改必要的内容:name\uuid\source\mac\
+virsh define /etc/libvirt/qemu/vm2.xml  # 创建虚拟机
+systemctl restart libvirtd
+vim /etc/sysctl.conf                
+sysctl -p
+net.ipv4.ip_forward = 1
+
